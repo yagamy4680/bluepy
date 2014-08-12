@@ -22,8 +22,6 @@ LDLIBS += `pkg-config glib-2.0 --libs`
 all: bluepy-helper 
 
 bluepy-helper: $(LOCAL_SRCS) $(IMPORT_SRCS)
-	echo "CPPFLAGS = $(CPPFLAGS)"
-	echo "IMPORT_SRCS = $(IMPORT_SRCS)"
 	$(CC) -L. $(CFLAGS) $(CPPFLAGS) -o $@ $(LOCAL_SRCS) $(IMPORT_SRCS) $(LDLIBS)
 
 clean:

@@ -187,7 +187,7 @@ if __name__ == "__main__":
             time.sleep(1.0)
         sensor.disable()
 
-    tag = SensorTag("BC:6A:29:AB:D3:7A")
+    tag = SensorTag("BC:6A:29:AE:CB:2B")
 
     sensors = [tag.IRtemperature, tag.humidity, tag.barometer]
     [ s.enable() for s in sensors ]

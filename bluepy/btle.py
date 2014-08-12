@@ -190,6 +190,10 @@ class Peripheral:
 
             rv = self._helper.stdout.readline()
             DBG("Got:", repr(rv))
+            if "" == rv:
+                DBG("WANRING: receive empty line")
+                continue
+
             if not rv.startswith('#'):
                 resp = Peripheral.parseResp(rv)
                 break

@@ -10,4 +10,8 @@ BLUEZ_URL="https://www.kernel.org/pub/linux/bluetooth/bluez-${BLUEZ_VERSION}.tar
 
 [ -f "${CURRENT}/bluez-${BLUEZ_VERSION}/config.h" ] || cd ${CURRENT}/bluez-${BLUEZ_VERSION} && ./configure --disable-systemd && make && cd ${CURRENT}
 
-BLUEZ_PATH=${CURRENT}/bluez-${BLUEZ_VERSION}  make -C ${CURRENT}/bluepy all
+[ -f "${CURRENT}/bluez-${BLUEZ_VERSION}/btio.patch.record" ] || patch ${CURRENT}/bluez-${BLUEZ_VERSION}/btio/btio.c < btio.c.patch && echo "" > ${CURRENT}/bluez-${BLUEZ_VERSION}/btio.patch.record
+
+rm -f ${CURRENT}/bluepy/bluepy-helper
+
+BLUEZ_PATH=${CURRENT}/bluez-${BLUEZ_VERSION}  make -C ${CURRENT}/bluepy
