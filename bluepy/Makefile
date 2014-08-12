@@ -1,4 +1,6 @@
+ifndef BLUEZ_PATH
 BLUEZ_PATH=../bluez-5.4
+endif
 
 BLUEZ_SRCS  = lib/bluetooth.c lib/hci.c lib/sdp.c lib/uuid.c
 BLUEZ_SRCS += attrib/att.c attrib/gatt.c attrib/gattrib.c attrib/utils.c
@@ -20,6 +22,8 @@ LDLIBS += `pkg-config glib-2.0 --libs`
 all: bluepy-helper 
 
 bluepy-helper: $(LOCAL_SRCS) $(IMPORT_SRCS)
+	echo "CPPFLAGS = $(CPPFLAGS)"
+	echo "IMPORT_SRCS = $(IMPORT_SRCS)"
 	$(CC) -L. $(CFLAGS) $(CPPFLAGS) -o $@ $(LOCAL_SRCS) $(IMPORT_SRCS) $(LDLIBS)
 
 clean:
